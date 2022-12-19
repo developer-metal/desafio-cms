@@ -4,6 +4,7 @@ import path from 'path';
 import Examples from './collections/Examples';
 import Users from './collections/Users';
 import Media from './collections/Media';
+require('dotenv').config();
 
 export default buildConfig({
   serverURL: 'http://localhost:3000',
@@ -23,8 +24,8 @@ export default buildConfig({
     s3Upload({
       region: 'us-east-1',
       credentials: {
-        accessKeyId: 'AKIA4OERV2YQ3JKGKPX2',
-        secretAccessKey: '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',
+        accessKeyId: process.env.ACCESS_KEY,
+        secretAccessKey: process.env.SECRET,
       },
     }),
   ],
