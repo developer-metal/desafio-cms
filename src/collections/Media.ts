@@ -8,6 +8,7 @@ const Media: CollectionConfig = {
     create: () => true,
     read: () => true,
     update: () => true,
+    admin: () => true,
 
   },
   fields: [
@@ -27,7 +28,7 @@ const Media: CollectionConfig = {
   upload: {
     staticURL: '/assets',
     staticDir: 'assets',
-    disableLocalStorage: true,
+    disableLocalStorage: false,
     imageSizes: [
       {
         name: 'thumbnail',
