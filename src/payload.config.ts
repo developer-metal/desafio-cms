@@ -21,10 +21,10 @@ export default buildConfig({
   },
   plugins: [
     s3Upload({
-      region: 'us-east-1',
+      region: '',
       credentials: {
-        accessKeyId: 'AKIA4OERV2YQ3JKGKPX2',
-        secretAccessKey: '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',
+        accessKeyId: '',
+        secretAccessKey: '',
       },
     }),
   ],

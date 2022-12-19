@@ -73,7 +73,6 @@ const Media: CollectionConfig = {
           console.log('no5');
         }
     },
-
     }
   ],
 }

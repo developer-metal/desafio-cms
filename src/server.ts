@@ -13,7 +13,7 @@ app.get('/', (_, res) => {
 
 payload.init({
   secret: process.env.PAYLOAD_SECRET,
-  mongoURL: 'mongodb+srv://tbk-test:eCc76rQr5ihYcI4v@cluster0.tbobjhv.mongodb.net/cms-test?retryWrites=true&w=majority',
+  mongoURL: '',
   express: app,
   onInit: () => {
     payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)
