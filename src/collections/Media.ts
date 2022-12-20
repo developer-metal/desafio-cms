@@ -1,7 +1,7 @@
 import { CollectionConfig } from 'payload/types';
-import uploadImages  from '../common/s3General';
+import uploadImages from '../common/s3General';
 
-
+const myBucketUrl = 'https://tbk8.s3.amazonaws.com/images';
 const Media: CollectionConfig = {
   slug: 'Media',
   access: {
@@ -15,21 +15,32 @@ const Media: CollectionConfig = {
       {
         name: 'title',
         type: 'text',
+        required: true
       },
       {
         name: 'description',
         type: 'text',
+        required: true
       },
       {
         name: 'date',
         type: 'date',
+        required: true
       },
   ],
   upload: {
     staticURL: '/assets',
     staticDir: 'assets',
-    disableLocalStorage: false,
-    imageSizes: [
+    disableLocalStorage: true,
+    s3: {
+      bucket: 'tbk8',
+      prefix: 'images/',
+      s3Url: ({ doc }) => `/images/${doc.type}/${doc.filename}`
+    },
+
+    mimeTypes: ['image/*'],
+    //adminThumbnail: ({ doc }) => `/images/${doc.filename}`,
+    /*imageSizes: [
       {
         name: 'thumbnail',
         width: 400,
@@ -48,33 +59,45 @@ const Media: CollectionConfig = {
         height: null,
         position: 'centre',
       },
-    ],
-    adminThumbnail: 'thumbnail',
-    mimeTypes: ['image/*'],
+    ],*/
+   // adminThumbnail: 'thumbnail',
   },
-  endpoints: [
+  hooks: {
+    afterRead: [
+      ({ doc }) => {
+        doc.url = `${myBucketUrl}/${doc.filename}`;
+        const urlEach: any = Object.keys(doc?.sizes || {});
+        urlEach.forEach((k): any => {
+          doc.sizes[k].url = `${myBucketUrl}/${doc.sizes[k].filename}`
+        });
+      }
+    ]
+  },
+  
+ /* endpoints: [
     {
       path: '/media',
       method: 'post',
       handler: async (req, res, next) => {
+        console.log(req);
       try {
         console.log(req);
         console.log(res);
-         /*   const responseAWS = await uploadImages(req.files) as any;
+            const responseAWS = await uploadImages(req.files) as any;
           if (responseAWS) {
             console.log('no4');
                res.status(200).json({ message: 'Api s3 cms Active' });
           } else {
             console.log('no3');
             res.status(200).json({ message: 'Api s3 cms Active no' });
-          }*/
+          }
        
         } catch(e) {
           console.log('no5');
         }
     },
     }
-  ],
+  ],*/
 }
 
 export default Media;
