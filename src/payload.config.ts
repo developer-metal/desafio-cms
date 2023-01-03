@@ -15,17 +15,17 @@ export default buildConfig({
   ],
   plugins: [
     s3Upload({
-      region: '',
+      region: 'us-east-1',
       credentials: {
-        accessKeyId: '',
-        secretAccessKey: '',
+        accessKeyId: 'AKIA4OERV2YQWKXT76OX',
+        secretAccessKey: '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',
       },
     }),
   ],
   typescript: {
-    outputFile: path.resolve(__dirname, 'payload-types.ts'),
+    outputFile: path.resolve(__dirname, 'payload-types.ts') || "",
   },
   graphQL: {
-    schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
+    schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql') || "",
   },
 });

@@ -1,6 +1,6 @@
 import { CollectionConfig } from 'payload/types';
 
-const myBucketUrl = '/images';
+const myBucketUrl = 'https://tbk-cms-test.s3.amazonaws.com/images';
 const Media: CollectionConfig = {
   slug: 'Media',
   access: {
@@ -8,6 +8,7 @@ const Media: CollectionConfig = {
     read: () => true,
     update: () => true,
     admin: () => true,
+    delete: () => true,
   },
   fields: [
       {
@@ -23,7 +24,13 @@ const Media: CollectionConfig = {
       {
         name: 'date',
         type: 'date',
-        required: true
+        required: true,
+        admin: {
+          date: {
+            // All config options above should be placed here
+            pickerAppearance: 'dayOnly'
+          }
+        },
       },
   ],
   upload: {
@@ -31,9 +38,9 @@ const Media: CollectionConfig = {
     staticDir: 'assets',
    // disableLocalStorage: true,
     s3: {
-      bucket: '',
+      bucket: 'tbk-cms-test',
       prefix: 'images/',
-      s3Url: ({ doc }) => `/images/${doc.type}/${doc.filename}`
+      s3Url: ({ doc }) => `https://tbk-cms-test.s3.amazonaws.com/images/${doc.type}/${doc.filename}`
     },
     mimeTypes: ['image/*','video/*'],
   },
