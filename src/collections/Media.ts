@@ -1,6 +1,6 @@
 import { CollectionConfig } from 'payload/types';
 
-const myBucketUrl = 'https://tbk-cms-test.s3.amazonaws.com/images';
+const myBucketUrl = '';
 const Media: CollectionConfig = {
   slug: 'Media',
   access: {
@@ -38,9 +38,9 @@ const Media: CollectionConfig = {
     staticDir: 'assets',
    // disableLocalStorage: true,
     s3: {
-      bucket: 'tbk-cms-test',
+      bucket: '',
       prefix: 'images/',
-      s3Url: ({ doc }) => `https://tbk-cms-test.s3.amazonaws.com/images/${doc.type}/${doc.filename}`
+      s3Url: ({ doc }) => ``
     },
     mimeTypes: ['image/*','video/*'],
   },
