@@ -5,7 +5,7 @@ import Users from './collections/Users';
 import Media from './collections/Media';
 
 export default buildConfig({
-  serverURL: 'http://localhost:3000',
+  serverURL: process.env.SERVER,
   admin: {
     user: Users.slug
   },
@@ -15,10 +15,10 @@ export default buildConfig({
   ],
   plugins: [
     s3Upload({
-      region: '',
+      region: process.env.REGION,
       credentials: {
-        accessKeyId: '',
-        secretAccessKey: '',
+        accessKeyId: process.env.KEY_S3,
+        secretAccessKey: process.env.SECRET_S3,
       },
     }),
   ],

@@ -1,6 +1,6 @@
 import { CollectionConfig } from 'payload/types';
 
-const myBucketUrl = '';
+const myBucketUrl = process.env.ENDPOINT;
 const Media: CollectionConfig = {
   slug: 'Media',
   access: {
@@ -38,9 +38,9 @@ const Media: CollectionConfig = {
     staticDir: 'assets',
    // disableLocalStorage: true,
     s3: {
-      bucket: '',
+      bucket: process.env.BUCKET,
       prefix: 'images/',
-      s3Url: ({ doc }) => ``
+      s3Url: ({ doc }) => `${process.env.DOMAIN_S3}${doc.type}/${doc.filename}`
     },
     mimeTypes: ['image/*','video/*'],
   },
